@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/providers/products_filters_provider.dart';
 
 import '../widgets/product_item.dart';
 
 import '../providers/products.dart';
 
 class ProductsGrid extends StatelessWidget {
-  final bool onlyFavs;
-
-  ProductsGrid(this.onlyFavs);
-
   @override
   Widget build(BuildContext context) {
+    final onlyFavs = Provider.of<ProductsFiltersProvider>(context).favoriteOnly;
     final productsProvider = Provider.of<Products>(context);
     final products = onlyFavs
         ? productsProvider.favoriteProducts
